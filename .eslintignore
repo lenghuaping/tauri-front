@@ -1,0 +1,13 @@
+src-tauri/
+node_modules/
+.vscode/
+
+# Ignore artifacts:
+build/
+coverage/
+dist/
+
+vite-env.d.ts
+vite.config.ts
+jest.config.js
+

@@ -1,0 +1,4 @@
+{
+    "*.{js,jsx,ts,tsx}": "eslint --fix --no-cache",
+    "*.{less,css,md,json}": "prettier --rule"
+}

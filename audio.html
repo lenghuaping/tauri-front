@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'
+        name='viewport'>
+  <meta content='ie=edge' http-equiv='X-UA-Compatible'>
+  <title>Document</title>
+</head>
+<body>
+<button onclick='play()'>播放</button>
+<script>
+  function play() {
+// 创建 AudioContext
+    const audioContext = new AudioContext();
+
+// 将字符串转换为 base64 编码
+    const base64 = btoa('hello world');
+
+// 将 base64 编码转换为 ArrayBuffer
+    const arrayBuffer = Uint8Array.from(atob(base64), c => c.charCodeAt(0)).buffer;
+
+// 创建 AudioBufferSourceNode
+    const audioBufferSourceNode = audioContext.createBufferSource();
+
+// 解码 ArrayBuffer 为 AudioBuffer
+    audioContext.decodeAudioData(arrayBuffer, (audioBuffer) => {
+      // 将 AudioBuffer 设置为 AudioBufferSourceNode 的缓冲区
+      audioBufferSourceNode.buffer = audioBuffer;
+
+      // 将 AudioBufferSourceNode 连接到 AudioContext 的 destination
+      audioBufferSourceNode.connect(audioContext.destination);
+
+      // 播放音频
+      audioBufferSourceNode.start(0);
+    });
+
+  }
+</script>
+</body>
+</html>
